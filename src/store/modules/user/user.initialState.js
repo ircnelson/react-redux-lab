@@ -1,4 +1,5 @@
 const initState = {
+  loading: false,
   items: []
 }
 

@@ -1,7 +1,17 @@
+const defaultAction = {
+    payload: {
+        data: null
+    },
+    params: {}
+}
+
 export function createReducer(initialState, reducerMap) {
     return (state = initialState, action) => {
         const reducer = reducerMap[action.type]
-        return reducer ? reducer(state, action.payload.data, action.params) : state
+        
+        const mergedAction = Object.assign(defaultAction, action)
+
+        return reducer ? reducer(state, mergedAction.payload.data, mergedAction.params) : state
     }
 }
 
