@@ -6,7 +6,7 @@ export default createReducer(initialState, {
     [`${types.GET_ALL_USERS}_SUCCESS`]: (state, data) => {
         return {
             ...state,
-            'users': data
+            items: data
         }
     }
 })

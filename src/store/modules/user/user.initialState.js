@@ -1,5 +1,5 @@
 const initState = {
-  users: []
+  items: []
 }
 
 export default initState

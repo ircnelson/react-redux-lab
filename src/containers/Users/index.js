@@ -11,12 +11,12 @@ class UsersContainer extends React.Component {
 
     render() {
 
-        const { users } = this.props
+        const { items } = this.props
 
         return (
             <div>
                 <ul>
-                    { users.map(item => <li>{JSON.stringify(item)}</li>) }
+                    { items.map(item => <li>{JSON.stringify(item)}</li>) }
                 </ul>
             </div>
         )
