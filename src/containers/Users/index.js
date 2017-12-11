@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Action from '../../store/actions'
 
+import { Spin } from 'antd'
+
 class UsersContainer extends React.Component {
 
     componentWillMount() {
@@ -13,14 +15,13 @@ class UsersContainer extends React.Component {
 
         const { items, loading } = this.props
 
-        const Loading = loading ? <div>Loading...</div> : null
-
         return (
             <div>
-                {Loading}
-                <ul>
-                    { items.map(item => <li key={item.id}>{JSON.stringify(item)}</li>) }
-                </ul>
+                <Spin spinning={loading}>
+                    <ul>
+                        { items.map(item => <li key={item.id}>{JSON.stringify(item)}</li>) }
+                    </ul>
+                </Spin>
             </div>
         )
     }
