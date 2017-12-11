@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Action from '../store/actions'
 
+import Layout from './Layout'
 import UsersContainer from './Users'
 
 const Home = () => (<div>Home view</div>)
@@ -12,15 +13,12 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
-                <header>App Header</header>
-                <main>
-                    <Switch>
-                        <Route exact path='/' component={Home} />
-                        <Route exact path='/users' component={UsersContainer} />
-                    </Switch>
-                </main>
-            </div>
+            <Layout>
+                <Switch>
+                    <Route exact path='/' component={Home} />
+                    <Route exact path='/users' component={UsersContainer} />
+                </Switch>
+            </Layout>
         )
     }
 }
