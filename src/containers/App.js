@@ -1,8 +1,5 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import Action from '../store/actions'
 
 import Layout from './Layout'
 import UsersContainer from './Users'
@@ -23,7 +20,4 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({ ...state })
-const mapDispatchToProps = dispatch => bindActionCreators(Action, dispatch)
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App
