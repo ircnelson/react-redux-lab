@@ -5,7 +5,9 @@ export function getAllUsers() {
         type: types.GET_ALL_USERS,
         payload: {
             promise: new Promise((resolve, reject) => {
-                resolve([])
+                resolve({
+                    data: []
+                })
             })
         }
     }
