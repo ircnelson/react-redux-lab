@@ -1,7 +1,7 @@
-import UserInitialState from './modules/user/user.initialState'
+import user from './modules/user/user.initialState'
 
 const initialState = {
-    user: new UserInitialState()
+    user
 }
 
 export default initialState

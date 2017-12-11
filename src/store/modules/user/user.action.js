@@ -6,7 +6,12 @@ export function getAllUsers() {
         payload: {
             promise: new Promise((resolve, reject) => {
                 resolve({
-                    data: []
+                    data: [{
+                        'id': 1
+                    },
+                    {
+                        'id': 2
+                    }]
                 })
             })
         }

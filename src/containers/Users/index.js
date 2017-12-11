@@ -10,16 +10,20 @@ class UsersContainer extends React.Component {
     }
 
     render() {
+
+        const { users } = this.props
+
         return (
             <div>
-                {JSON.stringify(this.state)}
-                
+                <ul>
+                    { users.map(item => <li>{JSON.stringify(item)}</li>) }
+                </ul>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => ({ user: state.user })
+const mapStateToProps = state => ({ ...state.user })
 const mapDispatchToProps = dispatch => bindActionCreators(Action, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)

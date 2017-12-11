@@ -1,7 +1,5 @@
-import { Record } from 'immutable'
-
-const initState = Record({
+const initState = {
   users: []
-})
+}
 
 export default initState
