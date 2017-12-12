@@ -1,19 +1,12 @@
+import { getPaged } from '../../../services/api.users'
 import types from '../../types'
 
-export function getAllUsers() {
+export function getPagedUsers(page = 1) {
     return {
         type: types.GET_ALL_USERS,
         payload: {
-            promise: new Promise((resolve, reject) => {
-                resolve({
-                    data: [{
-                        'id': 1
-                    },
-                    {
-                        'id': 2
-                    }]
-                })
-            })
-        }
+            promise: getPaged(page)
+        },
+        params: { page }
     }
 }

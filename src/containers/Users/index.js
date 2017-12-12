@@ -3,24 +3,34 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Action from '../../store/actions'
 
-import { Spin } from 'antd'
+import { Spin, Table } from 'antd'
+
+const columns = [
+    {
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name'
+    }
+]
 
 class UsersContainer extends React.Component {
 
     componentWillMount() {
-        this.props.getAllUsers()
+        this.props.getPagedUsers()
+    }
+
+    handleTableChange = (pagination, filters, sorter) => {
+        this.props.getPagedUsers(pagination.current)
     }
 
     render() {
 
-        const { items, loading } = this.props
+        const { items, loading, pagination } = this.props
 
         return (
             <div>
                 <Spin spinning={loading}>
-                    <ul>
-                        { items.map(item => <li key={item.id}>{JSON.stringify(item)}</li>) }
-                    </ul>
+                    <Table rowKey="id" onChange={this.handleTableChange} pagination={pagination} dataSource={items} columns={columns} />
                 </Spin>
             </div>
         )

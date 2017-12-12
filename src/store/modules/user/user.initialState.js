@@ -1,6 +1,9 @@
 const initState = {
   loading: false,
-  items: []
+  items: [],
+  pagination: {
+    total: 0
+  }
 }
 
 export default initState

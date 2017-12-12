@@ -10,11 +10,15 @@ export default createReducer(initialState, {
         }
     },
 
-    [`${types.GET_ALL_USERS}_SUCCESS`]: (state, data) => {
+    [`${types.GET_ALL_USERS}_SUCCESS`]: (state, { data, total }, params) => {
         return {
             ...state,
             loading: false,
-            items: data
+            items: data,
+            pagination: {
+                current: params.page,
+                total
+            }
         }
     }
 })
