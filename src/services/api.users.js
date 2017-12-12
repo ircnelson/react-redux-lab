@@ -8,8 +8,10 @@ const source = _.times(100, () => ({
     name: faker.name.firstName()
 }))
 
-export async function getPaged(page = 1) {
+export async function getAll(filter) {
     return new Promise((resolve, reject) => { 
+
+        const { page } = filter
 
         let offset = (page - 1) * PER_PAGE
         let sourcePaginated = _(source).slice(offset).take(PER_PAGE).value()
