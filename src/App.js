@@ -8,16 +8,32 @@ import UsersContainer from './containers/Users'
 
 const Home = () => (<div>Home view</div>)
 
+const navigation = [
+    {
+        path: '/',
+        exact: true,
+        displayText: 'Home',
+        icon: 'home',
+        component: () => Home
+    },
+    {
+        path: '/users',
+        exact: true,
+        displayText: 'Users',
+        icon: 'user',
+        component: () => UsersContainer
+    }
+]
+
 export default class App extends React.Component {
     render() {
         return (
             <div className="App">
                 <Provider store={store}>
                     <BrowserRouter>
-                        <Layout>
+                        <Layout menus={navigation}>
                             <Switch>
-                                <Route exact path='/' component={Home} />
-                                <Route exact path='/users' component={UsersContainer} />
+                                { navigation.map((nav, index) => <Route key={index} path={nav.path} exact={nav.exact} component={nav.component()} />) }
                             </Switch>
                         </Layout>
                     </BrowserRouter>
