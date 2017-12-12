@@ -1,20 +1,16 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Layout, Menu, Icon } from 'antd';
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const AppLayout = ({ children }) => (
+export default ({ children }) => (
     <Layout>
-        <Sider
-            breakpoint="lg"
-            collapsedWidth="0"
-            onCollapse={(collapsed, type) => { console.log(collapsed, type); }}>
+        <Sider breakpoint="lg" collapsedWidth="0">
 
             <div className="logo" style={{ 'height': '32px', 'margin': '16px', 'backgroundColor': 'rgba(255,255,255,.2)' }} />
 
-            <Menu theme="dark" mode="inline" onSelect={(e) => console.log(e)}>
+            <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                 <Menu.Item key="1">
                     <NavLink exact to="/">
                         <Icon type="home" />
@@ -41,7 +37,3 @@ const AppLayout = ({ children }) => (
         </Layout>
     </Layout>
 )
-
-const mapStateToProps = state => ({ ...state })
-
-export default connect(mapStateToProps, null)(AppLayout)
