@@ -7,9 +7,9 @@ var config = {
     projectId: "reactappsample",
     storageBucket: "reactappsample.appspot.com",
     messagingSenderId: "295705393997"
-};
+}
 
-firebase.initializeApp(config);
+firebase.initializeApp(config)
 
 export default {
     auth: firebase.auth

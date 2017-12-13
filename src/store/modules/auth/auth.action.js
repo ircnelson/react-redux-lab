@@ -15,23 +15,23 @@ export const startListeningToAuth = () => (dispatch, getState) => {
             });
         } else {
             if (getState().auth.currently !== 'ANONYMOUS') { // log out if not already logged out
-                dispatch({ type: types.AUTH_LOGOUT });
+                dispatch({ type: types.AUTH_LOGOUT })
             }
         }
-    });
+    })
 }
 
 export const attemptLogin = () => (dispatch, getState) => {
 
-    dispatch({ type: types.AUTH_ATTEMPTING_LOGIN });
+    dispatch({ type: types.AUTH_ATTEMPTING_LOGIN })
 
     auth().signInWithPopup(provider).then((error, user) => {
         if (error) {
-            //dispatch({ type: 'DISPLAY_ERROR', error:"Login failed! "+error });
-            dispatch({ type: types.AUTH_LOGOUT });
+            //dispatch({ type: 'DISPLAY_ERROR', error:"Login failed! "+error })
+            dispatch({ type: types.AUTH_LOGOUT })
         }
     }).catch(error => {
-        dispatch({ type: types.AUTH_LOGOUT });
+        dispatch({ type: types.AUTH_LOGOUT })
     })
 }
 
@@ -39,7 +39,7 @@ export const logout = () => (dispatch, getState) => {
 
     auth().signOut().then((error, _) => {
         if (!error) {
-            dispatch({ type: types.AUTH_LOGOUT });
+            dispatch({ type: types.AUTH_LOGOUT })
         }
     })
 }

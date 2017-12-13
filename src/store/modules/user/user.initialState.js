@@ -1,9 +1,7 @@
-const initState = {
+export default {
   loading: false,
   items: [],
   pagination: {
     total: 0
   }
 }
-
-export default initState

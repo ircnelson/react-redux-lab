@@ -1,10 +1,10 @@
 import React from 'react'
-import { Layout } from 'antd';
+import { Layout } from 'antd'
 
 import AppHeader from './Header'
 import AppSidebar from './Sidebar'
 
-const { Content, Footer } = Layout;
+const { Content, Footer } = Layout
 
 class AppLayout extends React.Component {
 
