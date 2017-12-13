@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk'
+import actions from './actions'
 
 import promiseMiddleware from './middlewares/promiseMiddleware'
 
@@ -25,3 +26,6 @@ const store = createStore(rootReducer, initState, composeEnhancers(applyMiddlewa
 )
 
 export default store
+export {
+	actions
+}

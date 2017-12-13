@@ -1,7 +1,9 @@
 import user from './modules/user/user.initialState'
+import auth from './modules/auth/auth.initialState'
 
 const initialState = {
-    user
+    user,
+    auth
 }
 
 export default initialState

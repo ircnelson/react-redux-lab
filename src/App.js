@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import store from './store'
 
-import Layout from './components/Layout'
+import AppLayout from './containers/Layout'
 import UsersContainer from './containers/Users'
 
 const Home = () => (<div>Home view</div>)
@@ -31,11 +31,11 @@ export default class App extends React.Component {
             <div className="App">
                 <Provider store={store}>
                     <BrowserRouter>
-                        <Layout menus={navigation}>
+                        <AppLayout menus={navigation}>
                             <Switch>
                                 { navigation.map((nav, index) => <Route key={index} path={nav.path} exact={nav.exact} component={nav.component()} />) }
                             </Switch>
-                        </Layout>
+                        </AppLayout>
                     </BrowserRouter>
                 </Provider>
             </div>
