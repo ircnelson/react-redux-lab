@@ -2,20 +2,21 @@ import { isPromise } from '../../util'
 
 const defaultTypes = ['PENDING', 'FULFILLED', 'REJECTED']
 
-export default function promiseMiddleware (config = {}) {
+export default function promiseMiddleware(config = {}) {
   const promiseTypeSuffixes = config.promiseTypeSuffixes || defaultTypes
 
   return (_ref) => {
     const dispatch = _ref.dispatch
 
-    return next => action => {
+    return (next) => (action) => {
       if (!isPromise(action.payload)) {
         return next(action)
       }
 
       const { type, payload, meta, params = {} } = action
       const { promise, data } = payload
-      const [ PENDING, FULFILLED, REJECTED ] = (meta || {}).promiseTypeSuffixes || promiseTypeSuffixes
+      const [PENDING, FULFILLED, REJECTED] =
+        (meta || {}).promiseTypeSuffixes || promiseTypeSuffixes
 
       /**
        * Dispatch the first async handler. This tells the
@@ -23,16 +24,17 @@ export default function promiseMiddleware (config = {}) {
        */
       next({
         type: `${type}_${PENDING}`,
-        ...!!data ? { payload: data, params } : {},
-        ...!!meta ? { meta } : {}
+        ...(data ? { payload: data, params } : {}),
+        ...(meta ? { meta } : {})
       })
 
-      const isAction = resolved => resolved && (resolved.meta || resolved.payload)
-      const isThunk = resolved => typeof resolved === 'function'
-      const getResolveAction = isError => ({
+      const isAction = (resolved) =>
+        resolved && (resolved.meta || resolved.payload)
+      const isThunk = (resolved) => typeof resolved === 'function'
+      const getResolveAction = (isError) => ({
         type: `${type}_${isError ? REJECTED : FULFILLED}`,
-        ...!!meta ? { meta } : {},
-        ...!!isError ? { error: true } : {}
+        ...(meta ? { meta } : {}),
+        ...(isError ? { error: true } : {})
       })
 
       /**
@@ -44,21 +46,33 @@ export default function promiseMiddleware (config = {}) {
       action.payload.promise = promise.then(
         (resolved = {}) => {
           const resolveAction = getResolveAction()
-          return dispatch(isThunk(resolved) ? resolved.bind(null, resolveAction) : {
-            ...resolveAction,
-            ...isAction(resolved) ? resolved : {
-              ...!!resolved && { payload: resolved, params }
-            }
-          })
+          return dispatch(
+            isThunk(resolved)
+              ? resolved.bind(null, resolveAction)
+              : {
+                  ...resolveAction,
+                  ...(isAction(resolved)
+                    ? resolved
+                    : {
+                        ...(!!resolved && { payload: resolved, params })
+                      })
+                }
+          )
         },
         (rejected = {}) => {
           const resolveAction = getResolveAction(true)
-          return dispatch(isThunk(rejected) ? rejected.bind(null, resolveAction) : {
-            ...resolveAction,
-            ...isAction(rejected) ? rejected : {
-              ...!!rejected && { payload: rejected, params }
-            }
-          })
+          return dispatch(
+            isThunk(rejected)
+              ? rejected.bind(null, resolveAction)
+              : {
+                  ...resolveAction,
+                  ...(isAction(rejected)
+                    ? rejected
+                    : {
+                        ...(!!rejected && { payload: rejected, params })
+                      })
+                }
+          )
         }
       )
 

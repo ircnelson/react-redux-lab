@@ -1,6 +1,6 @@
 export default {
-    currently: 'ANONYMOUS',
-    uid: null,
-    displayName: 'Guest',
-    photoURL: null
+  currently: 'ANONYMOUS',
+  uid: null,
+  displayName: 'Guest',
+  photoURL: null
 }

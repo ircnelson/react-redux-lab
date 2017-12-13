@@ -11,8 +11,8 @@ import registerServiceWorker from './registerServiceWorker'
 
 ReactDOM.render(<App />, document.getElementById('root'))
 
-setTimeout(function(){
-	store.dispatch(actions.startListeningToAuth())
+setTimeout(() => {
+  store.dispatch(actions.startListeningToAuth())
 })
 
 registerServiceWorker()

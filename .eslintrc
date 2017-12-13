@@ -1,14 +1,8 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb",
+  "extends": ["prettier"],
   "plugins": ["react", "jsx-a11y", "import", "prettier"],
-  "eslintIgnore": ["build/*"],
-  "prettier/prettier": ["error", {
-    "singleQuote": true,
-    "semi": false,
-    "trailingComma": "all",
-    "jsxBracketSameLine": true
-  }],
+  
   "rules": {
     "semi": ["error", "never"]
   }

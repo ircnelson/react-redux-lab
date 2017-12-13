@@ -9,23 +9,29 @@ import rootReducer from './reducers'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-var logger = store => next => action => {
-	console.log('dispatching', action.type, action)
+const logger = (store) => (next) => (action) => {
+  console.log('dispatching', action.type, action)
 
-	let result = next(action)
+  const result = next(action)
 
-	console.log('next state', store.getState())
+  console.log('next state', store.getState())
 
-	return result
+  return result
 }
 
-const store = createStore(rootReducer, initState, composeEnhancers(applyMiddleware(
-	thunkMiddleware,
-	promiseMiddleware({ promiseTypeSuffixes: ['PENDING', 'SUCCESS', 'ERROR'] }),
-	logger))
+const store = createStore(
+  rootReducer,
+  initState,
+  composeEnhancers(
+    applyMiddleware(
+      thunkMiddleware,
+      promiseMiddleware({
+        promiseTypeSuffixes: ['PENDING', 'SUCCESS', 'ERROR']
+      }),
+      logger
+    )
+  )
 )
 
 export default store
-export {
-	actions
-}
+export { actions }
